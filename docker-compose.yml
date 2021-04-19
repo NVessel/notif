@@ -1,0 +1,46 @@
+services:
+  email:
+    image: nvessel/email
+    build: EmailNotification
+    ports:
+    - 8141:8141
+    restart: always
+    depends_on:
+    - registry
+    - gateway
+
+  gateway:
+    image: nvessel/gateway
+    build: Gateway
+    ports:
+    - 8150:8150
+    restart: always
+    depends_on:
+      - registry
+
+  push:
+    image: nvessel/push
+    build: PushNotification
+    ports:
+    - 8142:8142
+    restart: always
+    depends_on:
+    - registry
+    - gateway
+
+  registry:
+    image: nvessel/registry
+    build: Registry
+    ports:
+    - 8761:8761
+    restart: always
+
+  sms:
+    image: nvessel/sms
+    build: SmsNotification
+    ports:
+    - 8140:8140
+    restart: always
+    depends_on:
+    - registry
+    - gateway

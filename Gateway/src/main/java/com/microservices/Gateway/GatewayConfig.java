@@ -12,11 +12,11 @@ public class GatewayConfig {
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/sms-notification/**")
-                        .uri("http://localhost:8140/"))
+                        .uri("http://sms:8140/"))
                 .route(r -> r.path("/email-notification/**")
-                        .uri("http://localhost:8141/"))
+                        .uri("http://email:8141/"))
                 .route(r -> r.path("/push-notification/**")
-                        .uri("http://localhost:8142/"))
+                        .uri("http://push:8142/"))
                 .build();
     }
 
